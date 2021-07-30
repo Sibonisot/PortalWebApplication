@@ -1,0 +1,5 @@
+﻿ALTER TABLE PortalUserRole
+  ADD PortalUserID VARCHAR(50) NOT NULL;
+
+  ALTER TABLE PortalUserRole
+   ADD CONSTRAINT PK_PortalUserRole_PortalUserID PRIMARY KEY CLUSTERED (PortalUserID);
