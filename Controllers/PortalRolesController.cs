@@ -11,9 +11,9 @@ namespace PortalWebApplication.Controllers
 {
     public class PortalRolesController : Controller
     {
-        private readonly DataPortalContext _context;
+        private readonly PortalDBContext _context;
 
-        public PortalRolesController(DataPortalContext context)
+        public PortalRolesController(PortalDBContext context)
         {
             _context = context;
         }

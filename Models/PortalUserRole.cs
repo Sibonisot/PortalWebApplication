@@ -9,19 +9,18 @@ namespace PortalWebApplication.Models
 {
     public partial class PortalUserRole
     {
-        [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Portal User ID")]
+       
         public int PortalUserId { get; set; }
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("User ID")]
+        [DisplayName("User Name")]
         public string UserId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Portal Role ID")]
+        [DisplayName("Role ID")]
         public int PortalRoleId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Description")]
+        [DisplayName("Role Description")]
         public string RoleDescription { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
@@ -32,12 +31,10 @@ namespace PortalWebApplication.Models
         [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
 
-        [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Portal Role")]
+        [DisplayName("Portal Role ID")]
 
         public virtual PortalRole PortalRole { get; set; }
 
-        [Required(ErrorMessage = "This field is required.")]
         [DisplayName("User Name")]
         public virtual PortalUser User { get; set; }
     }

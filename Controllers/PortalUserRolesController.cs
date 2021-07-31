@@ -11,9 +11,9 @@ namespace PortalWebApplication.Controllers
 {
     public class PortalUserRolesController : Controller
     {
-        private readonly DataPortalContext _context;
+        private readonly PortalDBContext _context;
 
-        public PortalUserRolesController(DataPortalContext context)
+        public PortalUserRolesController(PortalDBContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace PortalWebApplication.Controllers
         // GET: PortalUserRoles
         public async Task<IActionResult> Index()
         {
-            var dataPortalContext = _context.PortalUserRoles.Include(p => p.PortalRole).Include(p => p.User);
-            return View(await dataPortalContext.ToListAsync());
+            var portalDBContext = _context.PortalUserRoles.Include(p => p.PortalRole).Include(p => p.User);
+            return View(await portalDBContext.ToListAsync());
         }
 
         // GET: PortalUserRoles/Details/5
@@ -48,7 +48,7 @@ namespace PortalWebApplication.Controllers
         // GET: PortalUserRoles/Create
         public IActionResult Create()
         {
-            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "Company");
+            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "PortalRoleId");
             ViewData["UserId"] = new SelectList(_context.PortalUsers, "UserId", "UserId");
             return View();
         }
@@ -66,7 +66,7 @@ namespace PortalWebApplication.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "Company", portalUserRole.PortalRoleId);
+            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "PortalRoleId", portalUserRole.PortalRoleId);
             ViewData["UserId"] = new SelectList(_context.PortalUsers, "UserId", "UserId", portalUserRole.UserId);
             return View(portalUserRole);
         }
@@ -84,7 +84,7 @@ namespace PortalWebApplication.Controllers
             {
                 return NotFound();
             }
-            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "Company", portalUserRole.PortalRoleId);
+            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "PortalRoleId", portalUserRole.PortalRoleId);
             ViewData["UserId"] = new SelectList(_context.PortalUsers, "UserId", "UserId", portalUserRole.UserId);
             return View(portalUserRole);
         }
@@ -121,7 +121,7 @@ namespace PortalWebApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "Company", portalUserRole.PortalRoleId);
+            ViewData["PortalRoleId"] = new SelectList(_context.PortalRoles, "PortalRoleId", "PortalRoleId", portalUserRole.PortalRoleId);
             ViewData["UserId"] = new SelectList(_context.PortalUsers, "UserId", "UserId", portalUserRole.UserId);
             return View(portalUserRole);
         }

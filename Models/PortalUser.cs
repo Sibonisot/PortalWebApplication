@@ -13,24 +13,20 @@ namespace PortalWebApplication.Models
         {
             PortalUserRoles = new HashSet<PortalUserRole>();
         }
+
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Portal User ID")]
+        [DisplayName("User Name")]
         public string UserId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Surname")]
         public string Surname { get; set; }
-
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Division")]
+
         public string Division { get; set; }
-
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Department")]
         public string Department { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
@@ -38,12 +34,10 @@ namespace PortalWebApplication.Models
         public bool IsActive { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Email")]
+        [DisplayName("Email Address")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("User Roles")]
-
         public virtual ICollection<PortalUserRole> PortalUserRoles { get; set; }
+
     }
 }

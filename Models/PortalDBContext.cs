@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace PortalWebApplication.Models
 {
-    public partial class DataPortalContext : DbContext
+    public partial class PortalDBContext : DbContext
     {
-        public DataPortalContext()
+        public PortalDBContext()
         {
         }
 
-        public DataPortalContext(DbContextOptions<DataPortalContext> options)
+        public PortalDBContext(DbContextOptions<PortalDBContext> options)
             : base(options)
         {
         }
@@ -26,7 +26,7 @@ namespace PortalWebApplication.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=DataPortal;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=PortalDB;Trusted_Connection=True;");
             }
         }
 
@@ -94,8 +94,6 @@ namespace PortalWebApplication.Models
                     .HasName("PK_PortalUserRole_PortalUserID");
 
                 entity.ToTable("PortalUserRole");
-
-                entity.Property(e => e.PortalUserId).ValueGeneratedNever();
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 

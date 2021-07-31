@@ -27,7 +27,7 @@ namespace PortalWebApplication
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<DataPortalContext>(options =>
+            services.AddDbContext<PortalDBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
         }

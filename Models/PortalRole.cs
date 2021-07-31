@@ -13,15 +13,19 @@ namespace PortalWebApplication.Models
         {
             PortalUserRoles = new HashSet<PortalUserRole>();
         }
+
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Portal Role ID")]
+        [DisplayName("Role ID")]
         public int PortalRoleId { get; set; }
+
         [Required(ErrorMessage = "This field is required.")]
-        [DisplayName("Description")]
+        [DisplayName("Role Description")]
         public string PortalRoleDescription { get; set; }
+
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Company")]
         public string Company { get; set; }
+
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Active?")]
         public bool IsActive { get; set; }
