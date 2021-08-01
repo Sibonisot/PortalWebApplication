@@ -15,12 +15,13 @@ namespace PortalWebApplication.Models
         [DisplayName("User Name")]
         public string UserId { get; set; }
 
-        [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Role ID")]
         public int PortalRoleId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Role Description")]
+        [StringLength(50, ErrorMessage = "Too many characters.")]
+        [RegularExpression("^(?!\\d+$)(?![_\\s]+$)[A-Za-z0-9\\s_]+$", ErrorMessage = "Only Alphabets and Numbers allowed.")]
         public string RoleDescription { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
@@ -29,7 +30,9 @@ namespace PortalWebApplication.Models
 
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Date Created")]
-        public DateTime DateCreated { get; set; }
+        
+        public DateTime DateCreated { get; set; } = DateTime.Now;
+
 
         [DisplayName("Portal Role ID")]
 

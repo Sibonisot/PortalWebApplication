@@ -12,6 +12,7 @@ namespace PortalWebApplication.Controllers
     public class PortalUsersController : Controller
     {
         private readonly PortalDBContext _context;
+        private object portalUser;
 
         public PortalUsersController(PortalDBContext context)
         {
@@ -55,13 +56,23 @@ namespace PortalWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UserId,Name,Surname,Division,Department,IsActive,Email")] PortalUser portalUser)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(portalUser);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _context.Add(portalUser);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(portalUser);
             }
-            return View(portalUser);
+            catch (Exception)
+            {
+                ViewBag.TitleError = $"This Role is in use.";
+                ViewBag.Message = $"This Role can not be deleted because it used in Portal User Roles Table.";
+                return View("Error_P");
+                
+            }
         }
 
         // GET: PortalUsers/Edit/5
@@ -118,19 +129,29 @@ namespace PortalWebApplication.Controllers
         // GET: PortalUsers/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var portalUser = await _context.PortalUsers
-                .FirstOrDefaultAsync(m => m.UserId == id);
-            if (portalUser == null)
+                var portalUser = await _context.PortalUsers
+                    .FirstOrDefaultAsync(m => m.UserId == id);
+                if (portalUser == null)
+                {
+                    return NotFound();
+                }
+                //viewModel.ErrorMessage = "Email not found or matched";
+                return View(portalUser);
+            }
+            catch (Exception ex)
+
             {
-                return NotFound();
+                ViewBag.TitleError = $"This User is in use.";
+                ViewBag.Message = $"This User can not be deleted because it used in Portal User Roles Table." ;
+                return View("/Home/Error");
             }
-
-            return View(portalUser);
         }
 
         // POST: PortalUsers/Delete/5
@@ -138,10 +159,22 @@ namespace PortalWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var portalUser = await _context.PortalUsers.FindAsync(id);
-            _context.PortalUsers.Remove(portalUser);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var portalUser = await _context.PortalUsers.FindAsync(id);
+                _context.PortalUsers.Remove(portalUser);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+                    }
+
+
+            catch (Exception ex)
+            {
+                ViewBag.TitleError = $"{portalUser}This User is in use.";
+                ViewBag.Message = $"{portalUser}This User can not be deleted because it used in Portal User Roles Table.";
+                return View("Error_FU");
+             
+            };
         }
 
         private bool PortalUserExists(string id)

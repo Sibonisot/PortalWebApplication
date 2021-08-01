@@ -118,19 +118,21 @@ namespace PortalWebApplication.Controllers
         // GET: PortalRoles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+           
+                if (id == null)
+                {
+                    return NotFound();
+                }
 
-            var portalRole = await _context.PortalRoles
-                .FirstOrDefaultAsync(m => m.PortalRoleId == id);
-            if (portalRole == null)
-            {
-                return NotFound();
-            }
+                var portalRole = await _context.PortalRoles
+                    .FirstOrDefaultAsync(m => m.PortalRoleId == id);
+                if (portalRole == null)
+                {
+                    return NotFound();
+                }
 
-            return View(portalRole);
+                return View(portalRole);
+          
         }
 
         // POST: PortalRoles/Delete/5
@@ -138,10 +140,20 @@ namespace PortalWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var portalRole = await _context.PortalRoles.FindAsync(id);
-            _context.PortalRoles.Remove(portalRole);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var portalRole = await _context.PortalRoles.FindAsync(id);
+                _context.PortalRoles.Remove(portalRole);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+
+                ViewBag.TitleError = $"This Role is in use.";
+                ViewBag.Message = $"This Role can not be deleted because it used in Portal User Roles Table.";
+                return View("Error_FR");
+            }
         }
 
         private bool PortalRoleExists(int id)
