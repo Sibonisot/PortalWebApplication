@@ -28,7 +28,7 @@ namespace PortalWebApplication.Models
         [RegularExpression("^(?!\\d+$)(?![_\\s]+$)[A-Za-z0-9\\s_]+$", ErrorMessage = "Only Alphabets and Numbers allowed.")]
         public string RoleDescription { get; set; }
 
-        [Required(ErrorMessage = "This field is required.")]
+        
         [DisplayName("Active?")]
         public bool IsActive { get; set; }
 

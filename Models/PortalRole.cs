@@ -31,7 +31,7 @@ namespace PortalWebApplication.Models
         public string Company { get; set; }
 
 
-        [Required(ErrorMessage = "This field is required.")]
+        
         [DisplayName("Active?")]
         public bool IsActive { get; set; }
 
