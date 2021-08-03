@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<PortalWebApplication.Models.PortalRole>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Roles";
 }
 
 <h4>Manage Portal Roles</h4>
 
 <p>
-    <a asp-action="Create" class="btn btn-success">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Add New</a>
 </p>
 <table class="table" id="myTable">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PortalRoleId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.PortalRoleDescription)
             </th>
@@ -30,24 +33,27 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PortalRoleDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsActive)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.PortalRoleId">Edit</a>
-                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.PortalRoleId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortalRoleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortalRoleDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.PortalRoleId">Edit</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.PortalRoleId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

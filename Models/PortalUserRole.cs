@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using PortalWebApplication.CustomValidation;
 
 #nullable disable
 
@@ -9,7 +11,9 @@ namespace PortalWebApplication.Models
 {
     public partial class PortalUserRole
     {
-       
+
+
+        [DisplayName("Role User ID")]
         public int PortalUserId { get; set; }
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("User Name")]
@@ -30,11 +34,12 @@ namespace PortalWebApplication.Models
 
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Date Created")]
-        
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:MM}", ApplyFormatInEditMode = true)]
+        [LessThan]
         public DateTime DateCreated { get; set; } = DateTime.Now;
 
 
-        [DisplayName("Portal Role ID")]
+        [DisplayName("Role ID")]
 
         public virtual PortalRole PortalRole { get; set; }
 

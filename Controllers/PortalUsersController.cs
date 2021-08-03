@@ -145,7 +145,7 @@ namespace PortalWebApplication.Controllers
                 //viewModel.ErrorMessage = "Email not found or matched";
                 return View(portalUser);
             }
-            catch (Exception ex)
+            catch (Exception )
 
             {
                 ViewBag.TitleError = $"This User is in use.";
@@ -168,7 +168,7 @@ namespace PortalWebApplication.Controllers
                     }
 
 
-            catch (Exception ex)
+            catch (Exception )
             {
                 ViewBag.TitleError = $"{portalUser}This User is in use.";
                 ViewBag.Message = $"{portalUser}This User can not be deleted because it used in Portal User Roles Table.";

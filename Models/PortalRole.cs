@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-
+using PortalWebApplication.CustomValidation;
 #nullable disable
 
 namespace PortalWebApplication.Models
@@ -14,7 +14,7 @@ namespace PortalWebApplication.Models
             PortalUserRoles = new HashSet<PortalUserRole>();
         }
 
-       
+        [DisplayName("Role ID")]
         public int PortalRoleId { get; set; }
 
         [Required(ErrorMessage = "This field is required.")]
@@ -39,6 +39,9 @@ namespace PortalWebApplication.Models
 
         [Required(ErrorMessage = "This field is required.")]
         [DisplayName("Date Created")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:MM}", ApplyFormatInEditMode = true)]
+        [LessThan]
+
         public DateTime DateCreated { get; set; }
 
 

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Newtonsoft.Json; 
 
 #nullable disable
 
@@ -121,6 +124,13 @@ namespace PortalWebApplication.Models
             });
 
             OnModelCreatingPartial(modelBuilder);
+        }
+
+
+       
+        private ActionResult Json(bool v)
+        {
+            throw new NotImplementedException();
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

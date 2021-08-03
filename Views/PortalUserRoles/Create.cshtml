@@ -4,39 +4,63 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>PortalUserRole</h4>
-<hr />
+<h4>Add Portal User Role</h4>
+<hr /> 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label asp-for="PortalRoleId" class="control-label"></label>
+                        <select asp-for="PortalRoleId" class="form-control" asp-items="ViewBag.PortalRoleId"></select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="PortalRoleId" class="control-label"></label>
-                <select asp-for="PortalRoleId" class ="form-control" asp-items="ViewBag.PortalRoleId"></select>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="RoleDescription" class="control-label"></label>
+                        <input asp-for="RoleDescription" class="form-control" />
+                        <span asp-validation-for="RoleDescription" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DateCreated" class="control-label"></label>
+                        <input asp-for="DateCreated" class="form-control" action="" />
+                        <span asp-validation-for="DateCreated" class="text-danger"></span>
+                    </div>
+
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="RoleDescription" class="control-label"></label>
-                <input asp-for="RoleDescription" class="form-control" />
-                <span asp-validation-for="RoleDescription" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                        </label>
+                    </div>
+                </div><br><br /><br />
+
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
-                </label>
-            </div>
+
+            
             <div class="form-group">
-                <label asp-for="DateCreated" class="control-label"></label>
-                <input Text="<%# System.DateTime.Now%>" asp-for="DateCreated" class="form-control" max="@DateTime.Today.ToString("yyyy-MM-dd")"/>
-                <span asp-validation-for="DateCreated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add Role" class="btn btn-primary" />
             </div>
         </form>
     </div>
